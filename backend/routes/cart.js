@@ -5,10 +5,12 @@ const authentication = require("../middlewares/Auth");
 
 router.post("/addCart", authentication, cartController.addCart);
 
-router.get("/getCart", cartController.getCart);
+router.get("/getCart", authentication, cartController.getCart);
 
 router.delete("/deleteCart/:id", cartController.deleteCart);
 
-router.post("/buyCart", cartController.buyCart);
+router.post("/buyCart", authentication, cartController.buyCart);
+
+router.get("/getCount", authentication, cartController.getCartCount);
 
 module.exports = router;

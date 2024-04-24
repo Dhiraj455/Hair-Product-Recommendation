@@ -123,7 +123,7 @@ module.exports.userLogout = async (req, res) => {
       data: "",
     };
     try {
-      const user = await User.findOne({ _id: req.userid });
+      const user = await User.findOne({ _id: req.userid }).populate("history.product");
       if (!user) {
         response.errMessage = "User not found";
         return res.status(404).json(response);

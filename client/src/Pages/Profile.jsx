@@ -31,7 +31,7 @@ export const Profile = () => {
                   JPG or PNG no larger than 5 MB
                 </div>
                 <button className="btn btn-primary" type="button">
-                  Upload new image
+                  Profile image
                 </button>
               </div>
             </div>
@@ -125,6 +125,19 @@ export const Profile = () => {
             <hr className="black-line" />
             <div className="history-section">
               <h2>History</h2>
+              <div className="listProduct">
+                {profile.history &&
+                  profile.history.map((product) => {
+                    return (
+                      <div className="item">
+                        <img src={product.product.image} alt={product.product.name} />
+                        <h2>{product.product.name}</h2>
+                        <div class="price">$ {product.product.price}</div>
+                        <div class="quantity">Quantity: {product.quantity}</div>
+                      </div>
+                    );
+                  })}
+              </div>
             </div>
           </div>
         </div>

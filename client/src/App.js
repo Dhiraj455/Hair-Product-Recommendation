@@ -8,6 +8,7 @@ import { Profile } from "./Pages/Profile";
 import { ChatBot } from "./Pages/ChatBot";
 import { Quiz } from "./Pages/Quiz";
 import { Shop } from "./Pages/Shop";
+import { Cart } from "./Pages/Cart";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='/profile' element={<Profile />} /> 
           <Route path='/chat' element={<ChatBot />} /> 
           <Route path='/shop' element={<Shop />} />
+          <Route path='/cart' element={<Cart />} />
         </Routes>
       </div>
     </Router>

@@ -1,4 +1,5 @@
 const Cart = require("../models/cart");
+const User = require("../models/user");
 
 module.exports.addCart = async (req, res) => {
   const response = {
@@ -8,6 +9,7 @@ module.exports.addCart = async (req, res) => {
     data: "",
   };
   try {
+    console.log(req.body);
     const { product, quantity, price } = req.body;
     const total = quantity * price;
     const cart = new Cart({
@@ -83,7 +85,7 @@ module.exports.buyCart = async (req, res) => {
       return res.status(404).json(response);
     }
     cart.forEach(async (item) => {
-      user.history.push(item.product);
+      user.history.push({product: item.product, quantity: item.quantity});
       await user.save();
       await Cart.findByIdAndDelete(item._id);
     });
@@ -96,3 +98,23 @@ module.exports.buyCart = async (req, res) => {
     return res.status(500).json(response);
   }
 };
+
+module.exports.getCartCount = async (req, res) => {
+  const response = {
+    success: false,
+    message: "",
+    errMessage: "",
+    data: "",
+  };
+  try {
+    const cart = await Cart.find({ user: req.userid });
+    response.success = true;
+    response.message = "Cart count fetched successfully";
+    response.data = cart.length;
+    return res.status(200).json(response);
+  } catch (err) {
+    console.log(err);
+    response.errMessage = "Error fetching cart count";
+    return res.status(500).json(response);
+  }
+}
