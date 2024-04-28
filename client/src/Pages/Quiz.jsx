@@ -123,11 +123,19 @@ export const Quiz = () => {
     };
 
     // Call API
-    const response = await axios.post(
-      "http://localhost:5000/recommend",
-      quizData
-    );
-    console.log(response.data, "Response");
+    // const response = await axios.post(
+    //   "http://localhost:6000/recommend",
+    //   quizData
+    // );
+    const response = await fetch("http://localhost:8080/recommend", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: quizData,
+    }).then((response) => response.json());
+    console.log(response, "Response");
+    // console.log(response.json(), "Response");
 
     const quizContainer = document.getElementById("quizContainer");
     const recommendationContainer = document.getElementById(

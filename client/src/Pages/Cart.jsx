@@ -59,7 +59,7 @@ export const Cart = () => {
         <div className="totalAmount">
             <h3>{cartData.total}</h3>
         </div>
-        <button onClick={() => handleBuy()}>Buy Cart</button>
+        <button onClick={() => handleBuy()} className="btn btn-primary">Buy Cart</button>
       </div>
     </div>
   );

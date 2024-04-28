@@ -239,6 +239,7 @@ module.exports.getProducts = async (req, res) => {
     };
     try {
         const products = await Product.find();
+        console.log(products);
         response.success = true;
         response.message = "Products fetched successfully";
         response.data = products;

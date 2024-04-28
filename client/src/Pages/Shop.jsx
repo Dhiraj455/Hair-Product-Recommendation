@@ -12,6 +12,7 @@ export const Shop = () => {
   const navigate = useNavigate();
   const getdata = async () => {
     const data = await getProducts();
+    console.log(data);
     await getCartCount().then((data) => {
       setCount(data.data);
     });
